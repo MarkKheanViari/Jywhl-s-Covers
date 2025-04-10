@@ -25,55 +25,57 @@
 
     <main>
       <div class="cover-detail-grid">
-        <div class="cover-sidebar">
-          <div class="cover-sidebar-content">
-            <div id="cover-image-large" class="cover-image-large">
-              <img src="https://placehold.co/600x600" alt="Cover artwork">
-            </div>
-
-            <div class="cover-metadata">
-              <div class="metadata-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
-                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
-                </svg>
-                <div>
-                  <p class="metadata-label">Artist</p>
-                  <p id="cover-artist" class="metadata-value">Artist Name</p>
-                </div>
-              </div>
-
-              <div class="metadata-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
-                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
-                  <line x1="16" x2="16" y1="2" y2="6"/>
-                  <line x1="8" x2="8" y1="2" y2="6"/>
-                  <line x1="3" x2="21" y1="10" y2="10"/>
-                </svg>
-                <div>
-                  <p class="metadata-label">Released</p>
-                  <p id="cover-date" class="metadata-value">Release Date</p>
-                </div>
-              </div>
-
-              <div class="metadata-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
-                  <path d="M9 18V5l12-2v13"/>
-                  <circle cx="6" cy="18" r="3"/>
-                  <circle cx="18" cy="16" r="3"/>
-                </svg>
-                <div>
-                  <p class="metadata-label">Original</p>
-                  <p id="cover-original" class="metadata-value">Original Song by Original Artist</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="listen-button-container">
-              <button class="listen-button">Listen Now</button>
-            </div>
-          </div>
+        <!-- Inside .cover-sidebar-content -->
+<div class="cover-sidebar-content">
+    <div id="cover-image-large" class="cover-image-large">
+      <img src="https://placehold.co/600x600" alt="Cover artwork">
+    </div>
+  
+    <div class="cover-metadata">
+      <div class="metadata-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <div>
+          <p class="metadata-label">Artist</p>
+          <p id="cover-artist" class="metadata-value">Artist Name</p>
         </div>
+      </div>
+  
+      <div class="metadata-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
+          <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+          <line x1="16" x2="16" y1="2" y2="6"/>
+          <line x1="8" x2="8" y1="2" y2="6"/>
+          <line x1="3" x2="21" y1="10" y2="10"/>
+        </svg>
+        <div>
+          <p class="metadata-label">Released</p>
+          <p id="cover-date" class="metadata-value">Release Date</p>
+        </div>
+      </div>
+  
+      <div class="metadata-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="16" r="3"/>
+        </svg>
+        <div>
+          <p class="metadata-label">Original</p>
+          <p id="cover-original" class="metadata-value">Original Song by Original Artist</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="listen-button-container">
+      <audio id="cover-audio" controls>
+        <source src="" type="audio/mp4">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
 
         <div class="cover-main-content">
           <section class="cover-description-section">
