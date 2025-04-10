@@ -3,136 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cover Detail - Music Cover Museum</title>
+  <title>Cover Details - JYWHL Collections</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
-  <div class="container">
-    <header class="site-header">
-      <div class="header-content">
-        <a href="index.html" class="back-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-arrow-left">
-            <path d="m12 19-7-7 7-7"/>
-            <path d="M19 12H5"/>
-          </svg>
-          Back to collection
-        </a>
-        <h1 id="cover-title" class="site-title">Cover Title</h1>
-        <p id="cover-artist-subtitle" class="site-subtitle">By Artist Name</p>
-      </div>
-    </header>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">JYWHL Collections</a>
+      <nav class="main-nav">
+        <a href="index.html#covers" class="nav-link">Covers</a>
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="all-covers.html" class="nav-link">All Covers</a>
+      </nav>
+      <button class="btn btn-outline favorites-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        Favorites
+      </button>
+    </div>
+  </header>
 
-    <main>
+  <!-- Cover Detail Section -->
+  <section class="cover-detail">
+    <div class="container">
       <div class="cover-detail-grid">
-        <!-- Inside .cover-sidebar-content -->
-<div class="cover-sidebar-content">
-    <div id="cover-image-large" class="cover-image-large">
-      <img src="https://placehold.co/600x600" alt="Cover artwork">
-    </div>
-  
-    <div class="cover-metadata">
-      <div class="metadata-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
-          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-        <div>
-          <p class="metadata-label">Artist</p>
-          <p id="cover-artist" class="metadata-value">Artist Name</p>
-        </div>
-      </div>
-  
-      <div class="metadata-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
-          <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
-          <line x1="16" x2="16" y1="2" y2="6"/>
-          <line x1="8" x2="8" y1="2" y2="6"/>
-          <line x1="3" x2="21" y1="10" y2="10"/>
-        </svg>
-        <div>
-          <p class="metadata-label">Released</p>
-          <p id="cover-date" class="metadata-value">Release Date</p>
-        </div>
-      </div>
-  
-      <div class="metadata-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
-          <path d="M9 18V5l12-2v13"/>
-          <circle cx="6" cy="18" r="3"/>
-          <circle cx="18" cy="16" r="3"/>
-        </svg>
-        <div>
-          <p class="metadata-label">Original</p>
-          <p id="cover-original" class="metadata-value">Original Song by Original Artist</p>
-        </div>
-      </div>
-    </div>
-  
-    <div class="listen-button-container">
-      <audio id="cover-audio" controls>
-        <source src="" type="audio/mp4">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-  </div>
-
-        <div class="cover-main-content">
-          <section class="cover-description-section">
-            <h2 class="section-title">About This Cover</h2>
-            <p id="cover-description" class="cover-description">
-              Cover description will be displayed here.
-            </p>
-          </section>
-
-          <section class="lyrics-section">
-            <h2 class="section-title">Lyrics</h2>
-            <pre id="cover-lyrics" class="lyrics-content">Lyrics will be displayed here.</pre>
-          </section>
-
-          <section class="more-from-artist-section">
-            <h2 class="section-title">More From This Artist</h2>
-            <div class="more-covers">
-              <!-- More Cover 1 -->
-              <a href="cover-detail.html?id=1" class="latest-cover-card">
-                <div class="latest-cover-image">
-                  <img src="https://placehold.co/200x200" alt="Another cover">
-                </div>
-                <div class="latest-cover-info">
-                  <h3 class="cover-title">Another Cover</h3>
-                  <p class="cover-artist">Same Artist</p>
-                  <p class="cover-date">January 2023</p>
-                </div>
-              </a>
-
-              <!-- More Cover 2 -->
-              <a href="cover-detail.html?id=2" class="latest-cover-card">
-                <div class="latest-cover-image">
-                  <img src="https://placehold.co/200x200" alt="Another cover">
-                </div>
-                <div class="latest-cover-info">
-                  <h3 class="cover-title">Another Cover</h3>
-                  <p class="cover-artist">Same Artist</p>
-                  <p class="cover-date">January 2023</p>
-                </div>
-              </a>
+        <!-- Sidebar with Cover Image and Metadata -->
+        <div class="cover-sidebar">
+          <div class="cover-sidebar-content">
+            <div class="cover-image-large" id="cover-image-large">
+              <img src="" alt="Cover artwork">
             </div>
-          </section>
+            <!-- Audio Player -->
+            <div class="audio-player">
+              <audio id="cover-audio">
+                <source src="" type="audio/mp4">
+              </audio>
+              
+              <div class="progress-container">
+                <input type="range" class="progress-slider" id="progress-slider" min="0" max="100" value="0" step="0.01">
+              </div>
+              
+              <div class="time-display">
+                <span id="current-time">0:00</span>
+                <span id="duration">0:00</span>
+              </div>
+              
+              <div class="player-controls">
+                <div class="main-controls">
+                  <button class="control-btn" id="prev-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                      <line x1="5" y1="19" x2="5" y2="5"></line>
+                    </svg>
+                  </button>
+                  
+                  <button class="control-btn play-btn" id="play-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="play-icon">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="pause-icon" class="hidden">
+                      <rect x="6" y="4" width="4" height="16"></rect>
+                      <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                  </button>
+                  
+                  <button class="control-btn" id="next-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                      <line x1="19" y1="5" x2="19" y2="19"></line>
+                    </svg>
+                  </button>
+                </div>
+                
+                <div class="volume-controls">
+                  <button class="control-btn" id="mute-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="volume-icon">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="mute-icon" class="hidden">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15"></line>
+                      <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                  </button>
+                  <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" value="0.7" step="0.01">
+                </div>
+              </div>
+            </div>
+            <!-- Metadata -->
+            <div class="cover-metadata">
+              <div class="metadata-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                <div>
+                  <p class="metadata-label">Artist</p>
+                  <p class="metadata-value" id="cover-artist"></p>
+                </div>
+              </div>
+              <div class="metadata-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <div>
+                  <p class="metadata-label">Release Date</p>
+                  <p class="metadata-value" id="cover-date"></p>
+                </div>
+              </div>
+              <div class="metadata-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="metadata-icon">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+                <div>
+                  <p class="metadata-label">Original</p>
+                  <p class="metadata-value" id="cover-original"></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </main>
 
-    <footer class="site-footer">
-      <div class="footer-content">
-        <p class="copyright">© <span id="current-year"></span> Cover Collection</p>
-        <div class="footer-links">
-          <a href="about.html" class="footer-link">About</a>
-          <a href="contact.html" class="footer-link">Contact</a>
-          <a href="privacy.html" class="footer-link">Privacy</a>
+        <!-- Main Content -->
+        <div class="cover-main-content">
+          <h1 class="section-title" id="cover-title"></h1>
+          <p class="cover-artist-subtitle" id="cover-artist-subtitle"></p>
+
+          <!-- Description -->
+          <div class="cover-description-section">
+            <h2 class="section-title">Description</h2>
+            <p class="cover-description" id="cover-description"></p>
+          </div>
+
+          <!-- Lyrics -->
+          <div class="lyrics-section">
+            <h2 class="section-title">Lyrics</h2>
+            <pre class="lyrics-content" id="cover-lyrics"></pre>
+          </div>
+
+          <!-- More From This Artist -->
+          <div class="more-from-artist-section">
+            <h2 class="section-title">More From This Artist</h2>
+            <div class="more-covers" id="more-covers"></div>
+          </div>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-text">© <span id="current-year"></span> JYWHL</p>
+        <p class="footer-text">Para sayo to booooooi</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

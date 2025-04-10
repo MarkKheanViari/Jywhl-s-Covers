@@ -3,151 +3,291 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cover Collection - Music Cover Museum</title>
+  <title>JYWHL Covers</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
-  <div class="container">
-    <header class="site-header">
-      <div class="header-content">
-        <h1 class="site-title">JYWHL COLLECTIONS</h1>
-        <p class="site-subtitle">Collection mo to booooooi</p>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">JYWHL</a>
+      <nav class="main-nav">
+        <a href="#covers" class="nav-link">Covers</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="all-covers.html" class="nav-link">All Covers</a>
+      </nav>
+      <button class="btn btn-outline favorites-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        Favorites
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <h1 class="hero-title">Collection mo to booooi</h1>
+      <p class="hero-subtitle">mama wag mo ko palo</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" id="play-all-btn">Play All</button>
+        <button class="btn btn-outline">Learn More</button>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <main>
-      <section class="featured-section">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Featured Covers</h2>
-            <p class="section-description">
-              Mga masterpiece ng idol ko 
-            </p>
+  <!-- Featured Cover -->
+  <section class="featured">
+    <div class="container">
+      <div class="featured-grid">
+        <div class="featured-image">
+          <img src="kisame.jpg" alt="Kisame by Rhodessa">
+        </div>
+        <div class="featured-content">
+          <div class="featured-header">
+            <h3 class="featured-label">FEATURED COVER</h3>
+            <h2 class="featured-title">Kisame</h2>
+            <p class="featured-artist">Originally by Rhodessa</p>
           </div>
-          <a href="all-covers.html" class="view-all">
-            View all covers
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-chevron-right">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </a>
-        </div>
-
-        <div class="covers-grid">
-          <!-- Cover 1: Kisame -->
-          <a href="cover-detail.html?id=1" class="cover-card">
-            <div class="cover-image-container">
-              <img src="kisame.jpg" alt="Kisame by Rhodessa" class="cover-image">
-              <div class="cover-overlay">
-                <div class="play-button">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-play">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
+          <p class="featured-description">
+            Gustong Gusto kitaa ahh~ HAHHAHAA
+          </p>
+          
+          <!-- Audio Player -->
+          <div class="audio-player">
+            <audio id="audio" src="audio/1.m4a" preload="metadata"></audio>
+            
+            <div class="progress-container">
+              <input type="range" class="progress-slider" id="progress-slider" min="0" max="100" value="0" step="0.01">
+            </div>
+            
+            <div class="time-display">
+              <span id="current-time">0:00</span>
+              <span id="duration">0:00</span>
+            </div>
+            
+            <div class="player-controls">
+              <div class="main-controls">
+                <button class="control-btn" id="prev-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                    <line x1="5" y1="19" x2="5" y2="5"></line>
                   </svg>
-                </div>
+                </button>
+                
+                <button class="control-btn play-btn" id="play-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="play-icon">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="pause-icon" class="hidden">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                  </svg>
+                </button>
+                
+                <button class="control-btn" id="next-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                    <line x1="19" y1="5" x2="19" y2="19"></line>
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="volume-controls">
+                <button class="control-btn" id="mute-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="volume-icon">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="mute-icon" class="hidden">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                  </svg>
+                </button>
+                <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" value="0.7" step="0.01">
               </div>
             </div>
+          </div>
+          
+          <div class="action-buttons">
+            <button class="icon-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+            <button class="icon-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+            </button>
+            <a href="cover-detail.html?id=1" class="icon-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cover Collection -->
+  <section id="covers" class="covers">
+    <div class="container">
+      <h2 class="section-title">All Covers</h2>
+      <div class="covers-grid">
+        <!-- Cover 1: Kisame -->
+        <div class="cover-card">
+          <div class="cover-image">
+            <img src="kisame.jpg" alt="Kisame by Rhodessa">
+          </div>
+          <div class="cover-content">
             <h3 class="cover-title">Kisame</h3>
-            <p class="cover-artist">Rhodessa</p>
-            <p class="cover-date">Feb 2023</p>
-          </a>
-
-          <!-- Cover 2: Tenerife -->
-          <a href="cover-detail.html?id=2" class="cover-card">
-            <div class="cover-image-container">
-              <img src="tenerife.jpg" alt="Tenerife Sea by Ed Sheeran" class="cover-image">
-              <div class="cover-overlay">
-                <div class="play-button">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-play">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                  </svg>
-                </div>
-              </div>
+            <p class="cover-artist">Originally by Rhodessa</p>
+            <p class="cover-date">Recorded on Feb 10, 2023</p>
+            <div class="cover-actions">
+              <button class="text-btn play-cover-btn" data-audio="audio/1.m4a">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Play
+              </button>
+              <a href="cover-detail.html?id=1" class="icon-btn small">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </a>
             </div>
-            <h3 class="cover-title">Tenerife Sea</h3>
-            <p class="cover-artist">Ed Sheeran</p>
-            <p class="cover-date">2024</p>
-          </a>
+          </div>
+        </div>
 
-          <!-- Cover 3: Mahika -->
-          <a href="cover-detail.html?id=3" class="cover-card">
-            <div class="cover-image-container">
-              <img src="Sining.jpeg" alt="Sining by Dionela" class="cover-image">
-              <div class="cover-overlay">
-                <div class="play-button">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-play">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                  </svg>
-                </div>
-              </div>
+        <!-- Cover 2: Tenerife -->
+        <div class="cover-card">
+          <div class="cover-image">
+            <img src="tenerife.jpg" alt="Tenerife by Ed Sheeran">
+          </div>
+          <div class="cover-content">
+            <h3 class="cover-title">Tenerife</h3>
+            <p class="cover-artist">Originally by Ed Sheeran</p>
+            <p class="cover-date">Recorded on 2024</p>
+            <div class="cover-actions">
+              <button class="text-btn play-cover-btn" data-audio="audio/2.m4a">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Play
+              </button>
+              <a href="cover-detail.html?id=2" class="icon-btn small">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </a>
             </div>
+          </div>
+        </div>
+
+        <!-- Cover 3: Sining -->
+        <div class="cover-card">
+          <div class="cover-image">
+            <img src="Sining.jpeg" alt="Sining by Dionela">
+          </div>
+          <div class="cover-content">
             <h3 class="cover-title">Sining</h3>
-            <p class="cover-artist">Dionela</p>
-            <p class="cover-date">2024</p>
-          </a>
-
-          <!-- Cover 4: Through the Years -->
-          <a href="cover-detail.html?id=4" class="cover-card">
-            <div class="cover-image-container">
-              <img src="https://placehold.co/400x400" alt="Through the Years by David Santos" class="cover-image">
-              <div class="cover-overlay">
-                <div class="play-button">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-play">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                  </svg>
-                </div>
-              </div>
+            <p class="cover-artist">Originally by Dionela</p>
+            <p class="cover-date">Recorded on 2024</p>
+            <div class="cover-actions">
+              <button class="text-btn play-cover-btn" data-audio="audio/3.m4a">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Play
+              </button>
+              <a href="cover-detail.html?id=3" class="icon-btn small">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </a>
             </div>
+          </div>
+        </div>
+
+        <!-- Cover 4: Through the Years -->
+        <div class="cover-card">
+          <div class="cover-image">
+            <img src="TTY.jpg" alt="Through the Years by Kenny Rogers">
+          </div>
+          <div class="cover-content">
             <h3 class="cover-title">Through the Years</h3>
-            <p class="cover-artist">Kenny Rogers</p>
-            <p class="cover-date">1981</p>
-          </a>
+            <p class="cover-artist">Originally by Kenny Rogers</p>
+            <p class="cover-date">Recorded on 1981</p>
+            <div class="cover-actions">
+              <button class="text-btn play-cover-btn" data-audio="audio/4.m4a">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Play
+              </button>
+              <a href="cover-detail.html?id=4" class="icon-btn small">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section class="about-section">
-        <div class="about-content">
-          <h2 class="section-title">About This Collection</h2>
-          <p class="about-text">
-            Wala lang, ang ganda lang ng boses mo booooi, what a waste kung sa messenger lang sya naka display HAHAHAHAHHA
-          </p>
-          <p class="about-text">
-            Wag mo ko palo mama
-          </p>
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-content">
+        <h2 class="section-title">About This Collection</h2>
+        <div class="profile-image">
+          <img src="https://placehold.co/100x100/e2d5bc/8c7851?text=Profile" alt="Profile">
         </div>
-      </section>
+        <p class="about-text">
+          Wala lang, ang ganda lang ng boses mo booooi, what a waste kung sa messenger lang sya naka display HAHAHAHAHHA
+        </p>
+        <p class="about-text">
+          Wag mo ko palo mama
+        </p>
+      </div>
+    </div>
+  </section>
 
-      <section class="latest-section">
-        <h2 class="section-title">Latest Additions</h2>
-        <div class="latest-covers">
-          <!-- Latest Cover 1: Mahika -->
-          <a href="cover-detail.html?id=3" class="latest-cover-card">
-            <div class="latest-cover-image">
-              <img src="https://placehold.co/400x400" alt="Mahika by Elena Cruz">
-            </div>
-            <div class="latest-cover-info">
-              <h3 class="cover-title">Mahika</h3>
-              <p class="cover-artist">Elena Cruz</p>
-              <p class="cover-date">June 2024</p>
-            </div>
-          </a>
+  <!-- Contact Section --
 
-          <!-- Latest Cover 2: Through the Years -->
-          <a href="cover-detail.html?id=4" class="latest-cover-card">
-            <div class="latest-cover-image">
-              <img src="https://placehold.co/400x400" alt="Through the Years by David Santos">
-            </div>
-            <div class="latest-cover-info">
-              <h3 class="cover-title">Through the Years</h3>
-              <p class="cover-artist">David Santos</p>
-              <p class="cover-date">September 2024</p>
-            </div>
-          </a>
-        </div>
-      </section>
-    </main>
-
-  </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-text">© <span id="current-year"></span> JYWHL</p>
+        <p class="footer-text">Para sayo to boooooooi</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92de3bd53d5d8832',t:'MTc0NDI0NjA1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

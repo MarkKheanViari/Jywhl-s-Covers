@@ -3,73 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Covers - Music Cover Museum</title>
+  <title>All Covers - JYWHL Collections</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
-  <div class="container">
-    <header class="site-header">
-      <div class="header-content">
-        <a href="index.html" class="back-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-arrow-left">
-            <path d="m12 19-7-7 7-7"/>
-            <path d="M19 12H5"/>
-          </svg>
-          Back to home
-        </a>
-        <h1 class="site-title">All Covers</h1>
-        <p class="site-subtitle">Browse the complete collection</p>
-      </div>
-    </header>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">JYWHL Collections</a>
+      <nav class="main-nav">
+        <a href="index.html#covers" class="nav-link">Covers</a>
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="all-covers.html" class="nav-link">All Covers</a>
+      </nav>
+      <button class="btn btn-outline favorites-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        Favorites
+      </button>
+    </div>
+  </header>
 
-    <main>
-      <div class="all-covers-layout">
-        <div class="filter-sidebar">
-          <div class="filter-content">
-            <h2 class="filter-title">Filter Covers</h2>
+  <!-- All Covers Section -->
+  <section class="covers">
+    <div class="container">
+      <h2 class="section-title">All Covers</h2>
 
-            <div class="search-container">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.3-4.3"/>
-              </svg>
-              <input type="text" id="search-input" placeholder="Search covers..." class="search-input">
-            </div>
-
-            <div class="filter-group">
-              <h3 class="filter-group-title">Genre</h3>
-              <div class="filter-options" id="genre-filters">
-                <!-- Genre filters will be populated by JavaScript -->
-              </div>
-            </div>
-
-            <div class="filter-group">
-              <h3 class="filter-group-title">Sort By</h3>
-              <select id="sort-select" class="sort-select">
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="az">A-Z</option>
-                <option value="za">Z-A</option>
-              </select>
-            </div>
-          </div>
+      <!-- Filter Section -->
+      <div class="filter-section">
+        <div class="filter-group">
+          <label for="artist-filter" class="filter-label">Filter by Artist:</label>
+          <select id="artist-filter" class="filter-select">
+            <option value="all">All Artists</option>
+            <!-- Options will be populated dynamically -->
+          </select>
         </div>
-
-        <div class="all-covers-grid-container">
-          <div id="all-covers-grid" class="covers-grid">
-            <!-- Covers will be populated by JavaScript -->
-          </div>
-
-          <div class="pagination">
-            <button class="pagination-button pagination-active">1</button>
-            <button class="pagination-button">2</button>
-            <button class="pagination-button">3</button>
-          </div>
+        <div class="filter-group">
+          <label for="genre-filter" class="filter-label">Filter by Genre:</label>
+          <select id="genre-filter" class="filter-select">
+            <option value="all">All Genres</option>
+            <!-- Options will be populated dynamically -->
+          </select>
         </div>
       </div>
-    </main>
-  </div>
+
+      <!-- Covers Grid -->
+      <div class="covers-grid" id="all-covers-grid">
+        <!-- Covers will be populated dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-text">© <span id="current-year"></span> JYWHL</p>
+        <p class="footer-text">Paraaa sayo to boooooi</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
