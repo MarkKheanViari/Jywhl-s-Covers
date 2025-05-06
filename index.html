@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JYWHL Covers</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-        <!-- Open Graph Meta Tags -->
-        <meta property="og:title" content="JYWHL Song Covers">
-        <meta property="og:description" content="Para sayo to booooi">
-        <meta property="og:image" content="https://markkheanviari.github.io/Jywhl-s-Covers/wahg.png"> <!-- Updated to wahg.png -->
-        <meta property="og:url" content="https://markkheanviari.github.io/Jywhl-s-Covers/">
-        <meta property="og:type" content="website">
-      </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JYWHL Covers</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="JYWHL Song Covers">
+  <meta property="og:description" content="Para sayo to booooi">
+  <meta property="og:image" content="wahg.png">
+  <meta property="og:url" content="https://markkheanviari.github.io/Jywhl-s-Covers/">
+  <meta property="og:type" content="website">
+</head>
 <body>
   <!-- Header -->
   <header class="header">
@@ -29,15 +29,31 @@
         </svg>
         Favorites
       </button>
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#covers" class="mobile-nav-link">Covers</a>
+      <a href="#about" class="mobile-nav-link">About</a>
+      <a href="all-covers.html" class="mobile-nav-link">All Covers</a>
+      <button class="btn btn-outline favorites-btn mobile-favorites">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        Favorites
+      </button>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-bg"></div>
+  <!-- Hero Section with Parallax -->
+  <section class="hero parallax-container">
+    <div class="parallax-bg"></div>
     <div class="container hero-content">
-      <h1 class="hero-title">Collection mo to booooi</h1>
-      <p class="hero-subtitle">mama wag mo ko palo</p>
+      <h1 class="hero-title">Collections</h1>
+      <p class="hero-subtitle">Listen to my song covers y'all</p>
       <div class="hero-buttons">
         <button class="btn btn-primary" id="play-all-btn">Play All</button>
         <button class="btn btn-outline">Learn More</button>
@@ -49,7 +65,7 @@
   <section class="featured">
     <div class="container">
       <div class="featured-grid">
-        <div class="featured-image">
+        <div class="featured-image parallax-item">
           <img src="kisame.jpg" alt="Kisame by Rhodessa">
         </div>
         <div class="featured-content">
@@ -148,8 +164,9 @@
     </div>
   </section>
 
-  <!-- Cover Collection -->
-  <section id="covers" class="covers">
+  <!-- Cover Collection with Parallax -->
+  <section id="covers" class="covers parallax-container">
+    <div class="parallax-bg covers-bg"></div>
     <div class="container">
       <h2 class="section-title">All Covers</h2>
       <div class="covers-grid">
@@ -264,25 +281,24 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="about">
+  <!-- About Section with Parallax -->
+  <section id="about" class="about parallax-container">
+    <div class="parallax-bg about-bg"></div>
     <div class="container">
       <div class="about-content">
         <h2 class="section-title">About This Masterpiece</h2>
         <div class="profile-image">
-          <img src="https://placehold.co/100x100/e2d5bc/8c7851?text=Profile" alt="Profile">
+          <img src="wah.png" alt="Profile">
         </div>
         <p class="about-text">
-          Wala lang, ang ganda lang ng boses mo booooi, what a waste kung sa messenger lang sya naka display HAHAHAHAHHA
+          Waoooo masterpiece, oa naman sa ask
         </p>
         <p class="about-text">
-          Wag mo ko palo mama
+          Ang galing taina!
         </p>
       </div>
     </div>
   </section>
-
-  <!-- Contact Section --
 
   <!-- Footer -->
   <footer class="footer">

@@ -106,6 +106,92 @@ document.addEventListener('DOMContentLoaded', function() {
         element.textContent = currentYear;
     });
 
+    // Fix for navigation links - ensure they're clickable
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    navLinks.forEach(link => {
+        // Remove any existing event listeners to prevent duplicates
+        const newLink = link.cloneNode(true);
+        link.parentNode.replaceChild(newLink, link);
+        
+        // Add click event that prevents default only for mobile menu links
+        // when they're hash links (to ensure smooth scrolling)
+        newLink.addEventListener('click', function(e) {
+            if (this.classList.contains('mobile-nav-link') && this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu
+                    document.getElementById('mobile-menu').classList.remove('active');
+                    
+                    // Reset hamburger icon
+                    const spans = document.getElementById('mobile-menu-btn').querySelectorAll('span');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Adjust for header height
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+
+    // Mobile menu toggle with improved functionality
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event from bubbling up
+            mobileMenu.classList.toggle('active');
+            const spans = mobileMenuBtn.querySelectorAll('span');
+            
+            if (mobileMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                e.target !== mobileMenuBtn && 
+                !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                const spans = mobileMenuBtn.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    }
+
+    // Parallax effect
+    window.addEventListener('scroll', function() {
+        const parallaxBgs = document.querySelectorAll('.parallax-bg');
+        parallaxBgs.forEach(bg => {
+            const scrollPosition = window.pageYOffset;
+            const parentOffset = bg.parentElement.offsetTop;
+            const distance = (scrollPosition - parentOffset) * 0.5;
+            
+            if (scrollPosition > parentOffset - window.innerHeight && 
+                scrollPosition < parentOffset + bg.parentElement.offsetHeight) {
+                bg.style.transform = `translateY(${distance}px)`;
+            }
+        });
+    });
+
     // Format time (mm:ss)
     function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
@@ -215,23 +301,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
 
-        const player = setupAudioPlayer(audio, playBtn, playIcon, pauseIcon, progressSlider, currentTimeDisplay, durationDisplay, muteBtn, volumeIcon, muteIcon, volumeSlider, prevBtn, nextBtn);
+        if (audio && playBtn && playIcon && pauseIcon && progressSlider && currentTimeDisplay && 
+            durationDisplay && muteBtn && volumeIcon && muteIcon && volumeSlider && prevBtn && nextBtn) {
+            const player = setupAudioPlayer(audio, playBtn, playIcon, pauseIcon, progressSlider, currentTimeDisplay, durationDisplay, muteBtn, volumeIcon, muteIcon, volumeSlider, prevBtn, nextBtn);
 
-        // Play All functionality
-        const playAllBtn = document.getElementById('play-all-btn');
-        playAllBtn.addEventListener('click', () => {
-            player.setCurrentTrackIndex(0);
-            player.loadTrack(0);
-        });
+            // Play All functionality
+            const playAllBtn = document.getElementById('play-all-btn');
+            if (playAllBtn) {
+                playAllBtn.addEventListener('click', () => {
+                    player.setCurrentTrackIndex(0);
+                    player.loadTrack(0);
+                });
+            }
 
-        // Individual cover play buttons
-        const playCoverButtons = document.querySelectorAll('.play-cover-btn');
-        playCoverButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                player.setCurrentTrackIndex(index);
-                player.loadTrack(index);
+            // Individual cover play buttons
+            const playCoverButtons = document.querySelectorAll('.play-cover-btn');
+            playCoverButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    player.setCurrentTrackIndex(index);
+                    player.loadTrack(index);
+                });
             });
-        });
+        }
     }
 
     // Cover-detail.html audio player setup
@@ -250,16 +341,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const coverId = parseInt(urlParams.get('id'));
-        const coverIndex = coversData.findIndex(cover => cover.id === coverId);
+        if (audio && playBtn && playIcon && pauseIcon && progressSlider && currentTimeDisplay && 
+            durationDisplay && muteBtn && volumeIcon && muteIcon && volumeSlider && prevBtn && nextBtn) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const coverId = parseInt(urlParams.get('id'));
+            const coverIndex = coversData.findIndex(cover => cover.id === coverId);
 
-        const player = setupAudioPlayer(audio, playBtn, playIcon, pauseIcon, progressSlider, currentTimeDisplay, durationDisplay, muteBtn, volumeIcon, muteIcon, volumeSlider, prevBtn, nextBtn);
-        player.setCurrentTrackIndex(coverIndex);
-        player.loadTrack(coverIndex);
+            const player = setupAudioPlayer(audio, playBtn, playIcon, pauseIcon, progressSlider, currentTimeDisplay, durationDisplay, muteBtn, volumeIcon, muteIcon, volumeSlider, prevBtn, nextBtn);
+            player.setCurrentTrackIndex(coverIndex);
+            player.loadTrack(coverIndex);
 
-        if (coverId) {
-            displayCoverDetails(coverId);
+            if (coverId) {
+                displayCoverDetails(coverId);
+            }
         }
     }
 
@@ -277,75 +371,91 @@ function displayCoverDetails(coverId) {
     if (!cover) return;
 
     document.title = `${cover.title} by ${cover.artist} - JYWHL Collections`;
-    document.getElementById('cover-title').textContent = cover.title;
-    document.getElementById('cover-artist-subtitle').textContent = `By ${cover.artist}`;
     
-    const coverImage = document.getElementById('cover-image-large').querySelector('img');
-    coverImage.src = cover.image;
-    coverImage.alt = `${cover.title} by ${cover.artist}`;
+    const coverTitle = document.getElementById('cover-title');
+    const coverArtistSubtitle = document.getElementById('cover-artist-subtitle');
+    const coverImage = document.getElementById('cover-image-large')?.querySelector('img');
+    const coverArtist = document.getElementById('cover-artist');
+    const coverDate = document.getElementById('cover-date');
+    const coverOriginal = document.getElementById('cover-original');
+    const coverDescription = document.getElementById('cover-description');
+    const coverLyrics = document.getElementById('cover-lyrics');
     
-    document.getElementById('cover-artist').textContent = cover.artist;
-    document.getElementById('cover-date').textContent = cover.date;
-    document.getElementById('cover-original').textContent = `${cover.originalSong} by ${cover.originalArtist}`;
-    document.getElementById('cover-description').textContent = cover.description;
-    document.getElementById('cover-lyrics').textContent = cover.lyrics;
+    if (coverTitle) coverTitle.textContent = cover.title;
+    if (coverArtistSubtitle) coverArtistSubtitle.textContent = `By ${cover.artist}`;
+    
+    if (coverImage) {
+        coverImage.src = cover.image;
+        coverImage.alt = `${cover.title} by ${cover.artist}`;
+    }
+    
+    if (coverArtist) coverArtist.textContent = cover.artist;
+    if (coverDate) coverDate.textContent = cover.date;
+    if (coverOriginal) coverOriginal.textContent = `${cover.originalSong} by ${cover.originalArtist}`;
+    if (coverDescription) coverDescription.textContent = cover.description;
+    if (coverLyrics) coverLyrics.textContent = cover.lyrics;
 
     // Populate "More From This Artist" section
     const moreCoversContainer = document.getElementById('more-covers');
-    const relatedCovers = coversData.filter(c => c.artist === cover.artist && c.id !== cover.id);
-    
-    moreCoversContainer.innerHTML = '';
-    if (relatedCovers.length === 0) {
-        moreCoversContainer.innerHTML = '<p>No other covers by this artist.</p>';
-    } else {
-        relatedCovers.forEach(relatedCover => {
-            const coverCard = document.createElement('div');
-            coverCard.className = 'cover-card';
-            coverCard.innerHTML = `
-                <div class="cover-image">
-                    <img src="${relatedCover.image}" alt="${relatedCover.title} by ${relatedCover.artist}">
-                </div>
-                <div class="cover-content">
-                    <h3 class="cover-title">${relatedCover.title}</h3>
-                    <p class="cover-artist">Originally by ${relatedCover.originalArtist}</p>
-                    <p class="cover-date">Recorded on ${relatedCover.date}</p>
-                    <div class="cover-actions">
-                        <button class="text-btn play-cover-btn" data-audio="${relatedCover.audioUrl}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                            Play
-                        </button>
-                        <a href="cover-detail.html?id=${relatedCover.id}" class="icon-btn small">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="16" x2="12" y2="12"></line>
-                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                            </svg>
-                        </a>
+    if (moreCoversContainer) {
+        const relatedCovers = coversData.filter(c => c.artist === cover.artist && c.id !== cover.id);
+        
+        moreCoversContainer.innerHTML = '';
+        if (relatedCovers.length === 0) {
+            moreCoversContainer.innerHTML = '<p>No other covers by this artist.</p>';
+        } else {
+            relatedCovers.forEach(relatedCover => {
+                const coverCard = document.createElement('div');
+                coverCard.className = 'cover-card';
+                coverCard.innerHTML = `
+                    <div class="cover-image">
+                        <img src="${relatedCover.image}" alt="${relatedCover.title} by ${relatedCover.artist}">
                     </div>
-                </div>
-            `;
-            moreCoversContainer.appendChild(coverCard);
-        });
-
-        // Add event listeners for play buttons in "More From This Artist"
-        const playCoverButtons = moreCoversContainer.querySelectorAll('.play-cover-btn');
-        playCoverButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                const relatedCoverIndex = coversData.findIndex(c => c.audioUrl === button.dataset.audio);
-                const audio = document.getElementById('cover-audio');
-                const playBtn = document.getElementById('play-btn');
-                const playIcon = document.getElementById('play-icon');
-                const pauseIcon = document.getElementById('pause-icon');
-                audio.src = coversData[relatedCoverIndex].audioUrl;
-                audio.load();
-                audio.play();
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-                updateCoverDetails(relatedCoverIndex);
+                    <div class="cover-content">
+                        <h3 class="cover-title">${relatedCover.title}</h3>
+                        <p class="cover-artist">Originally by ${relatedCover.originalArtist}</p>
+                        <p class="cover-date">Recorded on ${relatedCover.date}</p>
+                        <div class="cover-actions">
+                            <button class="text-btn play-cover-btn" data-audio="${relatedCover.audioUrl}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                                Play
+                            </button>
+                            <a href="cover-detail.html?id=${relatedCover.id}" class="icon-btn small">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                moreCoversContainer.appendChild(coverCard);
             });
-        });
+
+            // Add event listeners for play buttons in "More From This Artist"
+            const playCoverButtons = moreCoversContainer.querySelectorAll('.play-cover-btn');
+            playCoverButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const relatedCoverIndex = coversData.findIndex(c => c.audioUrl === button.dataset.audio);
+                    const audio = document.getElementById('cover-audio');
+                    const playBtn = document.getElementById('play-btn');
+                    const playIcon = document.getElementById('play-icon');
+                    const pauseIcon = document.getElementById('pause-icon');
+                    
+                    if (audio && playIcon && pauseIcon) {
+                        audio.src = coversData[relatedCoverIndex].audioUrl;
+                        audio.load();
+                        audio.play();
+                        playIcon.classList.add('hidden');
+                        pauseIcon.classList.remove('hidden');
+                        updateCoverDetails(relatedCoverIndex);
+                    }
+                });
+            });
+        }
     }
 }
 
@@ -411,6 +521,8 @@ function displayAllCovers(filteredCovers = coversData) {
 function setupFilters() {
     const artistFilter = document.getElementById('artist-filter');
     const genreFilter = document.getElementById('genre-filter');
+
+    if (!artistFilter || !genreFilter) return;
 
     // Populate artist filter
     const artists = [...new Set(coversData.map(cover => cover.artist))].sort();

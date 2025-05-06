@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cover Details - JYWHL Collections</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap">
 </head>
 <body>
   <!-- Header -->
@@ -23,23 +23,40 @@
         </svg>
         Favorites
       </button>
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html#covers" class="mobile-nav-link">Covers</a>
+      <a href="index.html#about" class="mobile-nav-link">About</a>
+      <a href="all-covers.html" class="mobile-nav-link">All Covers</a>
+      <button class="btn btn-outline favorites-btn mobile-favorites">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        Favorites
+      </button>
     </div>
   </header>
 
-  <!-- Cover Detail Section -->
-  <section class="cover-detail">
+  <!-- Cover Detail Section with Parallax -->
+  <section class="cover-detail parallax-container">
+    <div class="parallax-bg detail-bg"></div>
     <div class="container">
       <div class="cover-detail-grid">
         <!-- Sidebar with Cover Image and Metadata -->
         <div class="cover-sidebar">
           <div class="cover-sidebar-content">
             <div class="cover-image-large" id="cover-image-large">
-              <img src="" alt="Cover artwork">
+              <img src="/placeholder.svg" alt="Cover artwork">
             </div>
             <!-- Audio Player -->
             <div class="audio-player">
               <audio id="cover-audio">
-                <source src="" type="audio/mp4">
+                <source src="/placeholder.svg" type="audio/mp4">
               </audio>
               
               <div class="progress-container">
