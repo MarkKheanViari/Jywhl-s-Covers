@@ -187,6 +187,9 @@ document.addEventListener('DOMContentLoaded', function() {
         element.textContent = currentYear;
     });
 
+    // Add cute music note decorations to the page
+    addMusicNoteDecorations();
+
     // Fix for navigation links - ensure they're clickable
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     navLinks.forEach(link => {
@@ -212,9 +215,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     spans[1].style.opacity = '1';
                     spans[2].style.transform = 'none';
                     
-                    // Scroll to target
+                    // Scroll to target with offset for header
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80, // Adjust for header height
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
@@ -258,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Parallax effect
+    // Enhanced parallax effect
     window.addEventListener('scroll', function() {
         const parallaxBgs = document.querySelectorAll('.parallax-bg');
         parallaxBgs.forEach(bg => {
@@ -269,6 +272,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if (scrollPosition > parentOffset - window.innerHeight && 
                 scrollPosition < parentOffset + bg.parentElement.offsetHeight) {
                 bg.style.transform = `translateY(${distance}px)`;
+            }
+        });
+
+        // Add fade-in effect for elements as they scroll into view
+        const fadeElements = document.querySelectorAll('.cover-card, .featured-content, .about-content');
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight * 0.85) {
+                element.classList.add('fade-in');
             }
         });
     });
@@ -292,6 +306,10 @@ document.addEventListener('DOMContentLoaded', function() {
             progressSlider.value = progressPercent || 0;
             currentTimeDisplay.textContent = formatTime(currentTime);
             durationDisplay.textContent = formatTime(duration);
+            
+            // Update progress bar color dynamically
+            const gradient = `linear-gradient(to right, var(--primary-dark) 0%, var(--primary-dark) ${progressPercent}%, var(--border-color) ${progressPercent}%, var(--border-color) 100%)`;
+            progressSlider.style.background = gradient;
         });
 
         // Set duration on load
@@ -299,16 +317,18 @@ document.addEventListener('DOMContentLoaded', function() {
             durationDisplay.textContent = formatTime(audioElement.duration);
         });
 
-        // Play/pause toggle
+        // Play/pause toggle with animation
         playBtn.addEventListener('click', () => {
             if (audioElement.paused) {
                 audioElement.play();
                 playIcon.classList.add('hidden');
                 pauseIcon.classList.remove('hidden');
+                playBtn.classList.add('playing');
             } else {
                 audioElement.pause();
                 playIcon.classList.remove('hidden');
                 pauseIcon.classList.add('hidden');
+                playBtn.classList.remove('playing');
             }
         });
 
@@ -316,41 +336,87 @@ document.addEventListener('DOMContentLoaded', function() {
         progressSlider.addEventListener('input', () => {
             const seekTime = (progressSlider.value / 100) * audioElement.duration;
             audioElement.currentTime = seekTime;
+            
+            // Update progress bar color dynamically while dragging
+            const gradient = `linear-gradient(to right, var(--primary-dark) 0%, var(--primary-dark) ${progressSlider.value}%, var(--border-color) ${progressSlider.value}%, var(--border-color) 100%)`;
+            progressSlider.style.background = gradient;
         });
 
-        // Mute/unmute
+        // Mute/unmute with animation
         muteBtn.addEventListener('click', () => {
             audioElement.muted = !audioElement.muted;
             volumeIcon.classList.toggle('hidden');
             muteIcon.classList.toggle('hidden');
             volumeSlider.value = audioElement.muted ? 0 : audioElement.volume;
+            
+            // Update volume slider color
+            updateVolumeSliderColor(volumeSlider);
+            
+            // Add animation
+            muteBtn.classList.add('clicked');
+            setTimeout(() => {
+                muteBtn.classList.remove('clicked');
+            }, 300);
         });
 
-        // Volume control
+        // Volume control with dynamic color
         volumeSlider.addEventListener('input', () => {
             audioElement.volume = volumeSlider.value;
             audioElement.muted = audioElement.volume == 0;
             volumeIcon.classList.toggle('hidden', audioElement.muted);
             muteIcon.classList.toggle('hidden', !audioElement.muted);
+            
+            // Update volume slider color
+            updateVolumeSliderColor(volumeSlider);
         });
+        
+        // Update volume slider color
+        function updateVolumeSliderColor(slider) {
+            const value = slider.value * 100;
+            const gradient = `linear-gradient(to right, var(--primary-dark) 0%, var(--primary-dark) ${value}%, var(--border-color) ${value}%, var(--border-color) 100%)`;
+            slider.style.background = gradient;
+        }
+        
+        // Initialize slider colors
+        updateVolumeSliderColor(volumeSlider);
 
-        // Load track
+        // Load track with animation
         function loadTrack(index) {
+            // Add loading animation
+            const audioPlayer = audioElement.closest('.audio-player');
+            if (audioPlayer) {
+                audioPlayer.classList.add('loading');
+                setTimeout(() => {
+                    audioPlayer.classList.remove('loading');
+                }, 500);
+            }
+            
             audioElement.src = coversData[index].audioUrl;
             audioElement.load();
             audioElement.play();
             playIcon.classList.add('hidden');
             pauseIcon.classList.remove('hidden');
+            playBtn.classList.add('playing');
         }
 
-        // Play next/previous track
+        // Play next/previous track with animation
         nextBtn.addEventListener('click', () => {
+            nextBtn.classList.add('clicked');
+            setTimeout(() => {
+                nextBtn.classList.remove('clicked');
+            }, 300);
+            
             currentTrackIndex = (currentTrackIndex + 1) % coversData.length;
             loadTrack(currentTrackIndex);
             updateCoverDetails(currentTrackIndex);
         });
 
         prevBtn.addEventListener('click', () => {
+            prevBtn.classList.add('clicked');
+            setTimeout(() => {
+                prevBtn.classList.remove('clicked');
+            }, 300);
+            
             currentTrackIndex = (currentTrackIndex - 1 + coversData.length) % coversData.length;
             loadTrack(currentTrackIndex);
             updateCoverDetails(currentTrackIndex);
@@ -364,6 +430,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         return { loadTrack, setCurrentTrackIndex: (index) => { currentTrackIndex = index; } };
+    }
+
+    // Add cute music note decorations
+    function addMusicNoteDecorations() {
+        const musicNotes = ['♪', '♫', '♬', '♩', '♭', '♮'];
+        const container = document.createElement('div');
+        container.className = 'music-notes-decoration';
+        container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden;';
+        
+        for (let i = 0; i < 20; i++) {
+            const note = document.createElement('span');
+            const randomNote = musicNotes[Math.floor(Math.random() * musicNotes.length)];
+            note.textContent = randomNote;
+            note.style.cssText = `
+                position: absolute;
+                color: var(--primary-dark);
+                opacity: ${Math.random() * 0.2 + 0.1};
+                font-size: ${Math.random() * 2 + 1}rem;
+                top: ${Math.random() * 100}%;
+                left: ${Math.random() * 100}%;
+                animation: float ${Math.random() * 10 + 10}s ease-in-out infinite;
+                animation-delay: ${Math.random() * 5}s;
+            `;
+            container.appendChild(note);
+        }
+        
+        document.body.appendChild(container);
     }
 
     // Index.html audio player setup
@@ -386,19 +479,29 @@ document.addEventListener('DOMContentLoaded', function() {
             durationDisplay && muteBtn && volumeIcon && muteIcon && volumeSlider && prevBtn && nextBtn) {
             const player = setupAudioPlayer(audio, playBtn, playIcon, pauseIcon, progressSlider, currentTimeDisplay, durationDisplay, muteBtn, volumeIcon, muteIcon, volumeSlider, prevBtn, nextBtn);
 
-            // Play All functionality
+            // Play All functionality with animation
             const playAllBtn = document.getElementById('play-all-btn');
             if (playAllBtn) {
                 playAllBtn.addEventListener('click', () => {
+                    playAllBtn.classList.add('clicked');
+                    setTimeout(() => {
+                        playAllBtn.classList.remove('clicked');
+                    }, 300);
+                    
                     player.setCurrentTrackIndex(0);
                     player.loadTrack(0);
                 });
             }
 
-            // Individual cover play buttons
+            // Individual cover play buttons with animation
             const playCoverButtons = document.querySelectorAll('.play-cover-btn');
             playCoverButtons.forEach((button, index) => {
                 button.addEventListener('click', () => {
+                    button.classList.add('clicked');
+                    setTimeout(() => {
+                        button.classList.remove('clicked');
+                    }, 300);
+                    
                     player.setCurrentTrackIndex(index);
                     player.loadTrack(index);
                 });
@@ -442,8 +545,28 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('all-covers.html')) {
         displayAllCovers();
         setupFilters();
+        
+        // Add animation to cover cards
+        animateCoverCards();
     }
+    
+    // Add fade-in class to elements for initial animation
+    setTimeout(() => {
+        document.querySelectorAll('.cover-card, .featured-content, .about-content').forEach(el => {
+            el.classList.add('fade-in');
+        });
+    }, 300);
 });
+
+// Animate cover cards with staggered effect
+function animateCoverCards() {
+    const cards = document.querySelectorAll('.cover-card');
+    cards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('animate-in');
+        }, 100 * index);
+    });
+}
 
 // Display cover details on the cover detail page
 function displayCoverDetails(coverId) {
@@ -514,12 +637,22 @@ function displayCoverDetails(coverId) {
                     </div>
                 `;
                 moreCoversContainer.appendChild(coverCard);
+                
+                // Add animation with delay
+                setTimeout(() => {
+                    coverCard.classList.add('fade-in');
+                }, 200);
             });
 
             // Add event listeners for play buttons in "More From This Artist"
             const playCoverButtons = moreCoversContainer.querySelectorAll('.play-cover-btn');
             playCoverButtons.forEach((button) => {
                 button.addEventListener('click', () => {
+                    button.classList.add('clicked');
+                    setTimeout(() => {
+                        button.classList.remove('clicked');
+                    }, 300);
+                    
                     const relatedCoverIndex = coversData.findIndex(c => c.audioUrl === button.dataset.audio);
                     const audio = document.getElementById('cover-audio');
                     const playBtn = document.getElementById('play-btn');
@@ -555,7 +688,7 @@ function displayAllCovers(filteredCovers = coversData) {
     
     allCoversGrid.innerHTML = '';
     
-    filteredCovers.forEach(cover => {
+    filteredCovers.forEach((cover, index) => {
         const coverCard = document.createElement('div');
         coverCard.className = 'cover-card';
         
@@ -586,12 +719,22 @@ function displayAllCovers(filteredCovers = coversData) {
         `;
         
         allCoversGrid.appendChild(coverCard);
+        
+        // Add staggered animation
+        setTimeout(() => {
+            coverCard.classList.add('fade-in');
+        }, 100 * index);
     });
 
     // Add event listeners for play buttons in all-covers.html
     const playCoverButtons = allCoversGrid.querySelectorAll('.play-cover-btn');
     playCoverButtons.forEach((button) => {
         button.addEventListener('click', () => {
+            button.classList.add('clicked');
+            setTimeout(() => {
+                button.classList.remove('clicked');
+            }, 300);
+            
             const coverIndex = coversData.findIndex(c => c.audioUrl === button.dataset.audio);
             window.location.href = `cover-detail.html?id=${coversData[coverIndex].id}`;
         });
@@ -623,7 +766,7 @@ function setupFilters() {
         genreFilter.appendChild(option);
     });
 
-    // Filter covers based on selections
+    // Filter covers based on selections with animation
     function applyFilters() {
         const selectedArtist = artistFilter.value;
         const selectedGenre = genreFilter.value;
@@ -637,11 +780,88 @@ function setupFilters() {
         if (selectedGenre !== 'all') {
             filteredCovers = filteredCovers.filter(cover => cover.genre === selectedGenre);
         }
-
-        displayAllCovers(filteredCovers);
+        
+        // Add fade-out animation before updating
+        const allCoversGrid = document.getElementById('all-covers-grid');
+        allCoversGrid.classList.add('fade-out');
+        
+        // Update after short delay for animation
+        setTimeout(() => {
+            displayAllCovers(filteredCovers);
+            allCoversGrid.classList.remove('fade-out');
+        }, 300);
     }
 
     // Add event listeners for filter changes
     artistFilter.addEventListener('change', applyFilters);
     genreFilter.addEventListener('change', applyFilters);
+    
+    // Add animation to filters
+    artistFilter.classList.add('fade-in');
+    genreFilter.classList.add('fade-in');
 }
+
+// Add CSS animations
+document.head.insertAdjacentHTML('beforeend', `
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeOut {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(20px); }
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.5s ease forwards;
+    }
+    
+    .fade-out {
+        animation: fadeOut 0.3s ease forwards;
+    }
+    
+    .clicked {
+        animation: pulse 0.3s ease;
+    }
+    
+    .playing {
+        animation: pulse 2s infinite;
+    }
+    
+    .loading {
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+    }
+    
+    .audio-player {
+        transition: all 0.3s ease;
+    }
+    
+    .cover-card {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    
+    .cover-card.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .animate-in {
+        animation: fadeIn 0.5s ease forwards;
+    }
+</style>
+`);
