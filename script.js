@@ -88,13 +88,94 @@ const coversData = [
   Can't imagine anything we've missed
   Can't imagine anything the two of us can't do
   
-  Through the years😩, you've never let me down
+  Through the years, you've never let me down
   You turned my life around, the sweetest days I've found
   I've found with you through the years
   I've never been afraid, I've loved the life we've made
   And I'm so glad I've stayed right here with you
   Through the years`
+    },
+    {
+        id: 5,
+        title: "Nang tahimik",
+        artist: "geiko",
+        image: "nang.png",
+        date: "2025",
+        genre: "angelic",
+        description: "Mamahalin ka nya ng tahimik",
+        originalSong: "Nang tahimik",
+        originalArtist: "geiko",
+        videoUrl: "https://example.com/video",
+        audioUrl: "audio/5.m4a",
+        lyrics: `Verse 1:
+    Mamahalin na lang kita nang tahimik
+    Idadaan na lang sa mga awitin
+    Lagi kang sinasali sa mga panalangin
+    Miss na kita iyon ang aking aaminin`
+    },
+    {
+        id: 6,
+        title: "We are young",
+        artist: "Fun",
+        image: "young.png",
+        date: "2012",
+        genre: "Diko alam",
+        description: "We are young",
+        originalSong: "We are young",
+        originalArtist: "Fun",
+        videoUrl: "https://example.com/video",
+        audioUrl: "audio/6.m4a",
+        lyrics: `Verse 1:
+    Give me a second, I
+    I need to get my story straight
+    My friends are in the bathroom getting higher than the Empire State
+    My lover, she's waiting for me just across the bar
+    My seat's been taken by some sunglasses asking 'bout her scar and
+
+    I know I gave it to you months ago
+    I know you're trying to forget
+    But between the drinks and subtle things
+    The holes in my apologies
+
+    You know I'm trying hard to take it back
+    So if by the time the bar closes
+    And you feel like falling down
+    I'll carry you home
+
+    Tonight`
+    },
+    {
+        id: 7,
+        title: "Slim Pickins",
+        artist: "Sabrina Carpenter",
+        image: "pickins.png",
+        date: "2024",
+        genre: "Country",
+        description: "Slim Pickins",
+        originalSong: "Slim Pickins",
+        originalArtist: "Sabrina Carpenter",
+        videoUrl: "https://example.com/video",
+        audioUrl: "audio/7.m4a",
+        lyrics: `Verse 1:
+    Give me a second, I
+    I need to get my story straight
+    My friends are in the bathroom getting higher than the Empire State
+    My lover, she's waiting for me just across the bar
+    My seat's been taken by some sunglasses asking 'bout her scar and
+
+    I know I gave it to you months ago
+    I know you're trying to forget
+    But between the drinks and subtle things
+    The holes in my apologies
+
+    You know I'm trying hard to take it back
+    So if by the time the bar closes
+    And you feel like falling down
+    I'll carry you home
+
+    Tonight`
     }
+    
 ];
 
 // Audio player functionality
